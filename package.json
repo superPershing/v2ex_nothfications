@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "async": "^2.4.1",
+    "cheerio": "^1.0.0-rc.1",
+    "chromedriver": "^2.30.1",
+    "selenium-webdriver": "^3.4.0",
+    "superagent": "^3.5.2"
+  },
+  "name": "v2ex_nothfications",
+  "description": "ve2x notifications",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/superPershing/v2ex_nothfications.git"
+  },
+  "author": "super-pershing",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/superPershing/v2ex_nothfications/issues"
+  },
+  "homepage": "https://github.com/superPershing/v2ex_nothfications#readme"
+}
