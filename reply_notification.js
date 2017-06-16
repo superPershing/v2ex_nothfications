@@ -10,12 +10,16 @@ const driver = new webdriver.Builder()
 
 var username = process.argv[2]
 var password = process.argv[3]
-var sendEmail = process.argv[4]
-var sendEmailPassword = process.argv[5]
-var receiveEmail = process.argv[6]
+var sendEmailSmtp = process.argv[4]
+var sendEmail = process.argv[5]
+var sendEmailPassword = process.argv[6]
+var receiveEmail = process.argv[7]
 
-var textSched = later.parse.text('every 1 min')
-var timer = later.setInterval(getNotification, textSched)
+var textNotification = later.parse.text('every 20 min')
+var timerNotification = later.setInterval(getNotification, textNotification)
+
+var textCheckIn = {h: [0], m: [5]}
+var timerCheckIn = later.setInterval(checkIn, textCheckIn)
 
 driver.get('https://www.v2ex.com/signin')
 driver.findElement(By.xpath('//*[@id="Main"]/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input')).sendKeys(username)
@@ -29,9 +33,16 @@ function getNotification () {
     var unreadNum = Number(text.split(' ')[0])
     console.log(unreadNum)
     if (unreadNum > 0) {
-      sendMail(sendEmail, sendEmailPassword, receiveEmail)
+      sendMail(sendEmailSmtp, sendEmail, sendEmailPassword, receiveEmail)
     }
   })
+}
+
+function checkIn () {
+  driver.get('https://www.v2ex.com/')
+  driver.findElement(By.xpath('//*[@id="Rightbar"]/div[4]/div/a')).click()
+  driver.findElement(By.xpath('//*[@id="Main"]/div[2]/div[2]/input')).click()
+  driver.get('https://www.v2ex.com/')
 }
 
 // driver.wait(until.titleIs('webdriver - Google Search'), 1000)
@@ -39,7 +50,7 @@ function getNotification () {
 
 function sendMail (email, password, receiveEmail) {
   let transporter = nodemailer.createTransport({
-    host: 'smtp.126.com',
+    host: sendEmailSmtp,
     port: 465,
     secure: true, // secure:true for port 465, secure:false for port 587
     auth: {
