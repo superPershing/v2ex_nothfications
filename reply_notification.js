@@ -18,8 +18,13 @@ var receiveEmail = process.argv[7]
 var textNotification = later.parse.text('every 20 min')
 var timerNotification = later.setInterval(getNotification, textNotification)
 
-var textCheckIn = {h: [0], m: [5]}
-var timerCheckIn = later.setInterval(checkIn, textCheckIn)
+var checkInSchedule = {
+    schedules:
+    [
+        {h: [14], m: [0]}
+    ]
+  }
+var timerCheckIn = later.setInterval(checkIn, checkInSchedule)
 
 driver.get('https://www.v2ex.com/signin')
 driver.findElement(By.xpath('//*[@id="Main"]/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input')).sendKeys(username)
