@@ -21,7 +21,7 @@ var timerNotification = later.setInterval(getNotification, textNotification)
 var checkInSchedule = {
     schedules:
     [
-        {h: [14], m: [0]}
+        {h: [18], m: [5]}
     ]
   }
 var timerCheckIn = later.setInterval(checkIn, checkInSchedule)
