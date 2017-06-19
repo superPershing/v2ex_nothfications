@@ -21,7 +21,7 @@ var timerNotification = later.setInterval(getNotification, textNotification)
 var checkInSchedule = {
     schedules:
     [
-        {h: [18], m: [5]}
+        {h: [10], m: [32]}
     ]
   }
 var timerCheckIn = later.setInterval(checkIn, checkInSchedule)
@@ -48,6 +48,7 @@ function checkIn () {
   driver.findElement(By.xpath('//*[@id="Rightbar"]/div[4]/div/a')).click()
   driver.findElement(By.xpath('//*[@id="Main"]/div[2]/div[2]/input')).click()
   driver.get('https://www.v2ex.com/')
+  sendMail(sendEmailSmtp, sendEmail, sendEmailPassword, receiveEmail)
 }
 
 // driver.wait(until.titleIs('webdriver - Google Search'), 1000)
