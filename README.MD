@@ -1,6 +1,7 @@
-for ve2x notifications  
+V2EX没有回复邮件提醒，但有时提问又不能一直守着论坛，故实现此Demo。
  - v2ex回复或其他消息提醒
  - 自动签到领取铜币  
+
 usage:  
 ```
 >> git clone git@github.com:superPershing/v2ex_notifications.git
@@ -14,4 +15,5 @@ Not Finished.
 TODO:  
  - get notification's detail
   
-吐槽：later.js默认是UTC时区
+吐槽：
+ - later.js默认是UTC时区。
