@@ -1,6 +1,6 @@
 for ve2x notifications  
  - v2ex回复或其他消息提醒
- - 自动签到领取铜币
+ - 自动签到领取铜币  
 usage:  
 ```
 >> git clone git@github.com:superPershing/v2ex_notifications.git
@@ -13,4 +13,5 @@ usage:
 Not Finished.  
 TODO:  
  - get notification's detail
-
+  
+吐槽：later.js默认是UTC时区
