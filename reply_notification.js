@@ -26,11 +26,15 @@ var checkInSchedule = {
   ]
 }
 
-driver.get('https://www.v2ex.com/signin')
-driver.findElement(By.xpath('//*[@id="Main"]/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input')).sendKeys(username)
-driver.findElement(By.xpath('//*[@id="Main"]/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input')).sendKeys(password)
-driver.findElement(By.xpath('//*[@id="Main"]/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input[2]')).click()
-driver.get('https://www.v2ex.com/')
+login()
+
+function login () {
+  driver.get('https://www.v2ex.com/signin')
+  driver.findElement(By.xpath('//*[@id="Main"]/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input')).sendKeys(username)
+  driver.findElement(By.xpath('//*[@id="Main"]/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input')).sendKeys(password)
+  driver.findElement(By.xpath('//*[@id="Main"]/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input[2]')).click()
+  driver.get('https://www.v2ex.com/')
+}
 
 var timerNotification = later.setInterval(getNotification, textNotification)
 var timerCheckIn = later.setInterval(checkIn, checkInSchedule)
@@ -43,7 +47,7 @@ function getNotification () {
     if (unreadNum > 0) {
       sendMail(sendEmailSmtp, sendEmail, sendEmailPassword, receiveEmail, 'notification!')
     } else {
-      
+
     }
   })
 }
