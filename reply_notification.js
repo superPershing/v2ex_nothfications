@@ -49,13 +49,13 @@ function getNotification () {
     } else {
 
     }
-  })
+  }).catch(() => login())
 }
 
 function checkIn () {
   driver.get('https://www.v2ex.com/')
-  driver.findElement(By.xpath('//*[@id="Rightbar"]/div[4]/div/a')).click()
-  driver.findElement(By.xpath('//*[@id="Main"]/div[2]/div[2]/input')).click()
+  driver.findElement(By.xpath('//*[@id="Rightbar"]/div[4]/div/a')).click().catch(() => login())
+  driver.findElement(By.xpath('//*[@id="Main"]/div[2]/div[2]/input')).click().catch(() => login())
   driver.get('https://www.v2ex.com/')
   // console.log('Check in')
   sendMail(sendEmailSmtp, sendEmail, sendEmailPassword, receiveEmail, 'checkIn!')
