@@ -17,7 +17,7 @@ var sendEmail = process.argv[5]
 var sendEmailPassword = process.argv[6]
 var receiveEmail = process.argv[7]
 
-var textNotification = later.parse.text('every 2 min')
+var textNotification = later.parse.text('every 20 min')
 
 var checkInSchedule = {
   schedules:
@@ -53,7 +53,7 @@ function getNotification () {
 }
 
 function checkIn () {
-  driver.get('https://www.v2ex.com/')
+  login()
   driver.findElement(By.xpath('//*[@id="Rightbar"]/div[4]/div/a')).click().catch(() => login())
   driver.findElement(By.xpath('//*[@id="Main"]/div[2]/div[2]/input')).click().catch(() => login())
   driver.get('https://www.v2ex.com/')
