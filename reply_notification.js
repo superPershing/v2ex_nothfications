@@ -57,10 +57,16 @@ function getNotification () {
     var unreadNum = Number(text.split(' ')[0])
     console.log(unreadNum)
     if (unreadNum > 0) {
-      sendMail(sendEmailSmtp, sendEmail, sendEmailPassword, receiveEmail, 'notification!')
-      driver.findElement(By.xpath('//*[@id="Rightbar"]/div[2]/div[4]/strong/a')).click()
-    } else {
-
+      driver.findElement(By.xpath('//*[@id="Rightbar"]/div[2]/div[4]/strong/a')).click().then(() => {
+        var message = 'V2EX notification unread'
+        // for (var unreadId = 3; unreadId < unreadNum + 3; ++unreadId) {
+        //   driver.findElement(By.xpath('//*[@id="Main"]/div[2]/div[' + unreadId + ']/table/tbody/tr/td[2]/span/a[1]/strong')).getText().then((text) => {
+        //     var temp = text + '在'
+        //     message += temp
+        //   })
+        // }
+        sendMail(sendEmailSmtp, sendEmail, sendEmailPassword, receiveEmail, unreadNum + ' V2EX notification unread!', message)
+      })
     }
     driver.get('https://www.v2ex.com/')
   }).catch(() => driver.get('https://www.v2ex.com/'))
@@ -70,7 +76,8 @@ function checkIn () {
   login()
   driver.findElement(By.xpath('//*[@id="Rightbar"]/div[4]/div/a')).click()
   driver.findElement(By.xpath('//*[@id="Main"]/div[2]/div[2]/input')).click().then(() => {
-    sendMail(sendEmailSmtp, sendEmail, sendEmailPassword, receiveEmail, 'checkIn!')
+    sendMail(sendEmailSmtp, sendEmail, sendEmailPassword, receiveEmail, 'V2EX checkIn', 'V2EX checkIn')
+    // TODO: 获得具体信息
   })
   console.log('check in')
   driver.get('https://www.v2ex.com/')
@@ -79,7 +86,7 @@ function checkIn () {
 // driver.wait(until.titleIs('webdriver - Google Search'), 1000)
 // driver.quit()
 
-function sendMail (sendEmailSmtp, email, password, receiveEmail, emailText) {
+function sendMail (sendEmailSmtp, email, password, receiveEmail, subjectText, emailText) {
   let transporter = nodemailer.createTransport({
     host: sendEmailSmtp,
     port: 465,
@@ -94,7 +101,7 @@ function sendMail (sendEmailSmtp, email, password, receiveEmail, emailText) {
   let mailOptions = {
     from: '<' + email + '>', // sender address
     to: receiveEmail, // list of receivers
-    subject: 'V2EX!', // Subject line
+    subject: subjectText, // Subject line
     text: emailText, // plain text body
     html: '<b>' + emailText + '</b>' // html body
   }
