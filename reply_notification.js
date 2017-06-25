@@ -7,7 +7,7 @@ const By = webdriver.By
 const later = require('later')
 const nodemailer = require('nodemailer')
 const driver = new webdriver.Builder()
-    .forBrowser('chrome')
+    .forBrowser('phantomjs')
     .build()
 
 var username = process.argv[2]
