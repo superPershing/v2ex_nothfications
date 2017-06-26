@@ -29,7 +29,7 @@ var notificationSchedule = {
 var checkInSchedule = {
   schedules:
   [
-        {h: [1], m: [0]}
+        {h: [1], m: [5]}
   ]
 }
 
