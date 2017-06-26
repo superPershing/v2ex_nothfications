@@ -29,21 +29,15 @@ var notificationSchedule = {
 var checkInSchedule = {
   schedules:
   [
-        {h: [6], m: [25]}
+        {h: [1], m: [0]}
   ]
 }
 
 login()
 function login () {
   driver.get('https://www.v2ex.com/signin')
-  driver.findElement(By.xpath('//*[@id="Main"]/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input')).clear().then(() => {
-    console.log(username)
-    driver.findElement(By.xpath('//*[@id="Main"]/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input')).sendKeys(username)
-  })
-  driver.findElement(By.xpath('//*[@id="Main"]/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input')).clear().then(() => {
-    console.log(password)
-    driver.findElement(By.xpath('//*[@id="Main"]/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input')).sendKeys(password)
-  })
+  driver.findElement(By.xpath('//*[@id="Main"]/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input')).sendKeys(username)
+  driver.findElement(By.xpath('//*[@id="Main"]/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input')).sendKeys(password)
   driver.findElement(By.xpath('//*[@id="Main"]/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input[2]')).click()
 }
 
@@ -69,7 +63,7 @@ function getNotification () {
       })
     }
     driver.get('https://www.v2ex.com/')
-  }).catch(() => driver.get('https://www.v2ex.com/'))
+  }).catch(() => { driver.get('https://www.v2ex.com/') })
 }
 
 function checkIn () {
